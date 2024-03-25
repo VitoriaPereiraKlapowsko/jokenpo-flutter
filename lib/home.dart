@@ -21,17 +21,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String resultado = '';
-  String opcaoUsuario = '';
+  String opcaoUsuario = ''; // Armazena a escolha do usuário
   String opcaoComputador = '';
 
+// Função chamada quando o usuário seleciona uma jogada
   void jogandoPartida(int jogadaUsuario) {
-    final int jogadaComputador = _escolhaComputador();
+    final int jogadaComputador = _escolhaComputador(); // Gera a jogada aleatória do computador
     final resultadoFinal = _resultadoFinal(jogadaUsuario, jogadaComputador);
 
+// Converte os números das jogadas em textos 
     final jogadaUsuarioTexto = _chancesJogada(jogadaUsuario);
     final jogadaComputadorTexto = _chancesJogada(jogadaComputador);
 
-    setState(() {
+    setState(() {  // Atualiza o estado da tela com os resultados
       resultado = resultadoFinal;
       opcaoUsuario = 'Você escolheu $jogadaUsuarioTexto';
       opcaoComputador = 'Computador escolheu $jogadaComputadorTexto';
@@ -41,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
   int _escolhaComputador() {
     return Random().nextInt(3);
   }
-
+ // Função para determinar o resultado do jogo
   String _resultadoFinal(int jogadaUsuario, int jogadaComputador) {
     if (jogadaUsuario == jogadaComputador) {
       return 'Ops... Empate!';
@@ -54,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
+// Função para converter o número da jogada em texto 
   String _chancesJogada(int jogada) {
     switch (jogada) {
       case 0:
@@ -68,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context) { //Inserindo as imagens, definindo os seus tamanhos, criando os botões, definindo tamanhos de fontes
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 194, 177, 29),
